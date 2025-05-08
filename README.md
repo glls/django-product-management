@@ -150,6 +150,7 @@ django-product-management/
 - Create a frontend using Django templates or a JavaScript framework
 - Implement a barcode/QR code generator for products
 - Add export functionality (CSV, PDF)
+- Migrate from sqlite to PostgreSQL server
 
 ## Resources
 
