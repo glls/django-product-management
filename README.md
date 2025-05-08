@@ -46,7 +46,7 @@ This project is designed as an exercise for new developers/students to learn:
 
 1. Clone this repository:
 ```
-git clone https://github.com/yourusername/django-product-management.git
+git clone https://github.com/glls/django-product-management.git
 cd django-product-management
 ```
 
