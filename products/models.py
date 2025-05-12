@@ -6,6 +6,9 @@ class Category(models.Model):
     #null & blank = allow top level categories without parent
     parent = models.ForeignKey('self', on_delete=models.PROTECT, null=True, blank=True, related_name='children') 
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
     def __str__(self):
         return self.name
 
