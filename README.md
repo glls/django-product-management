@@ -119,9 +119,9 @@ django-product-management/
 ### Task 3: Customize the Admin Interface
 
 - Register the Product model with the admin site
+- Add 'Category' model (name. parent) and property to 'Product' - should support hierarchy tree (parent child relationship)
 - Customize the admin interface with list_display, search_fields, etc.
 - Add filtering capabilities
-- Add 'Category' model (name. parent) and property to 'Product' - should support hierarchy tree (parent child relationship)
 
 ### Task 4: Implement Django REST Framework
 
