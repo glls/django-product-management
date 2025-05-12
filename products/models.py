@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -10,7 +11,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True, blank=True)
     notes = models.TextField()
     serial = models.CharField(max_length=100, unique=True)
     rfid = models.CharField(max_length=100)
