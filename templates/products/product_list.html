@@ -1,0 +1,35 @@
+{% extends 'products/base.html' %}
+
+{% block title %}Product List{% endblock %}
+
+{% block content %}
+<h1>Product List</h1>
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Notes</th>
+        <th>Serial</th>
+        <th>RFID</th>
+        <th>Code</th>
+        <th>Image</th>
+        <th>Price</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td><a href="{% url 'product-detail-page' product.pk %}">{{ product.name|escape }}</a></td>
+        <td>{{ product.category|default_if_none:""|escape }}</td>
+        <td>{{ product.notes|default_if_none:""|escape }}</td>
+        <td>{{ product.serial|escape }}</td>
+        <td>{{ product.rfid|default_if_none:""|escape }}</td>
+        <td>{{ product.code|default_if_none:""|escape }}</td>
+        <td>
+            {% if product.image %}
+                <img src="{{ product.image.url|escape }}" alt="{{ product.name|escape }}" width="100"/>
+            {% endif %}
+        </td>
+        <td>{{ product.price }}€</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

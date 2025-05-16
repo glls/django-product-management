@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from PIL import Image
 from io import BytesIO
 from django.core.files.base import ContentFile
+from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -70,3 +71,6 @@ class Product(models.Model):
                 save=False # Don't save the model yet
             )
         super().save(*args, **kwargs) # Call the original save method to save the model
+    
+    def get_absolute_url(self):
+        return reverse('product-detail-page', args=[str(self.id)])
