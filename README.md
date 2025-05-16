@@ -139,6 +139,8 @@ django-product-management/
 
 - Configure media settings
 - Handle image upload in both admin and API
+- Add product image restriction to 20MB
+- Compress the product image file to max 1024px (on large size) and keep aspect-ratio
 
 ### Task 7: Write Tests
 
