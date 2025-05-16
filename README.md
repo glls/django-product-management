@@ -141,6 +141,8 @@ django-product-management/
 - Handle image upload in both admin and API
 - Add product image restriction to 20MB
 - Compress the product image file to max 1024px (on large size) and keep aspect-ratio
+- Add basic product views with templates.
+- Add qrcode link for each product.
 
 ### Task 7: Write Tests
 
