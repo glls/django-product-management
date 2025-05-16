@@ -54,12 +54,10 @@ class Product(models.Model):
             if dimensions[largest] > max_size:
                 ratio = dimensions[largest] / max_size
                 dimensions[largest] = max_size
-                print(f"dimensions: {dimensions}")
                 if largest != "width":
                     dimensions["width"] = int(dimensions["width"] / ratio)
                 else:
                     dimensions["height"] = int(dimensions["height"] / ratio)
-                print(f"dimensions: {dimensions}")
                 img = img.resize((dimensions["width"], dimensions["height"]), Image.LANCZOS)
 
             # Compress to 85% quality 
