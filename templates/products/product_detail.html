@@ -1,0 +1,37 @@
+{% extends 'products/base.html' %}
+
+{% block title %}Product Details{% endblock %}
+
+{% block content %}
+<h1>Product: {{ product.name|escape }}</h1>
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Notes</th>
+        <th>Serial</th>
+        <th>RFID</th>
+        <th>Code</th>
+        <th>Image</th>
+        <th>Price</th>
+    </tr>
+    <tr>
+        <td>{{ product.name|escape }}</td>
+        <td>{{ product.category|default_if_none:""|escape }}</td>
+        <td>{{ product.notes|default_if_none:""|escape }}</td>
+        <td>{{ product.serial|escape }}</td>
+        <td>{{ product.rfid|default_if_none:""|escape }}</td>
+        <td>{{ product.code|default_if_none:""|escape }}</td>
+        <td>
+            {% if product.image %}
+                <img src="{{ product.image.url|escape }}" alt="{{ product.name|escape }}" width="100"/>
+            {% endif %}
+        </td>
+        <td>{{ product.price }}€</td>
+    </tr>
+</table>
+<h2>Scan product link:</h2>
+<img src="{% url 'generate_qr' product.get_absolute_url %}" width="200" alt="QR Code"/>
+<br>
+<a href="{% url 'product-list-page' %}">🔙 Back to Product List</a>
+{% endblock %}

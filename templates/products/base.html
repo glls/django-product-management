@@ -1,0 +1,18 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}My Site{% endblock %}</title>
+</head>
+<body>
+  <nav>
+    <a href="{% url 'home' %}">🏠 Home</a>
+    <a href="javascript:history.back()">🔙 Back</a>
+  </nav>
+
+  <hr>
+
+  {% block content %}
+  {% endblock %}
+</body>
+</html>

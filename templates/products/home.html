@@ -1,0 +1,8 @@
+{% extends 'products/base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+    <h1>Welcome to products app</h1>
+    <a href=" {% url 'product-list-page' %}" >-- > Products list##</a>
+{% endblock %}
