@@ -4,4 +4,5 @@ django-filter==25.1
 djangorestframework==3.16.0
 Markdown==3.8
 pillow==11.2.1
+qrcode==8.2
 sqlparse==0.5.3
