@@ -14,9 +14,13 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+STATIC_URL = '/static/'
+
+
 MEDIA_ROOT = BASE_DIR
 MEDIA_URL = ''
-
+STATIC_ROOT = BASE_DIR / 'static'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -25,24 +29,27 @@ SECRET_KEY = 'django-insecure-a7fp9_@wlt**897i2v4qig&f&iqx2gce&q80t4z25!&$db1kd^
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-if DEBUG:
-    ALLOWED_HOSTS = ['*']
-else:
-    ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*'] # Change this to your domain in production
 
 REST_FRAMEWORK = {
     # Allow full access for authenticated users and rate limiting for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+        "rest_framework_api_key.permissions.HasAPIKey",
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
     ],
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.AnonRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '10/minute',  # Limit anonymous users to 10 requests per minute
+        'anon': '60/minute',  # Limit to 60 requests per minute
     },
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
+    'DEFAULT_ROUTER_TRAILING_SLASH': None,  # Disable trailing slash enforcement
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',  # Serve only JSON
+    ]
 }
 
 # Application definition
@@ -57,6 +64,7 @@ INSTALLED_APPS = [
     'products',
     'rest_framework',
     'api',
+    'rest_framework_api_key',
 ]
 
 MIDDLEWARE = [
@@ -130,13 +138,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
-STATIC_URL = 'static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+APPEND_SLASH = True
