@@ -32,7 +32,7 @@ class Product(models.Model):
     serial = models.CharField(max_length=100, unique=True)
     rfid = models.CharField(max_length=100, null=True, blank=True)
     code = models.CharField(max_length=100, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True, validators=[validate_image_file_size])
+    image = models.ImageField(upload_to='media', null=True, blank=True, validators=[validate_image_file_size])
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
