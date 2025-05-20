@@ -12,6 +12,7 @@ class Category(models.Model):
     parent = models.ForeignKey('self', on_delete=models.PROTECT, null=True, blank=True, related_name='children') 
 
     class Meta:
+        ordering = ['id']
         verbose_name_plural = "Categories"
 
     def __str__(self):
@@ -34,6 +35,9 @@ class Product(models.Model):
     image = models.ImageField(upload_to='media', null=True, blank=True, validators=[validate_image_file_size])
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
+    class Meta:
+        ordering = ['id']
+    
     def __str__(self):
         return self.name
     

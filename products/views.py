@@ -4,6 +4,7 @@ from .models import Product
 import qrcode
 import qrcode.image.svg
 from io import BytesIO
+import csv
 
 def home(request):
     return render(request, "products/home.html")
@@ -29,3 +30,16 @@ def generate_qr(request, url_path):
     svg_data = stream.getvalue()
 
     return HttpResponse(svg_data, content_type='image/svg+xml')
+
+def export_csv(request):
+    products = Product.objects.all()
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="products.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Name', 'Category', 'Notes', 'Serial', 'RFID', 'Code', 'Image', 'Price'])
+    
+    for product in products:
+        writer.writerow([product.name, product.category, product.notes, product.serial, product.rfid, product.code, product.image.url if product.image else '', product.price])
+
+    return response
