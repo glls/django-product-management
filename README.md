@@ -143,6 +143,11 @@ django-product-management/
 - Compress the product image file to max 1024px (on large size) and keep aspect-ratio
 - Add basic product views with templates.
 - Add qrcode link for each product.
+- Add API authorization with API key.
+To authorize add Authorization header to your http request as follows:
+key: Authorization
+value: Api-key <your-api-key>
+- Add ordering in models by 'id' for consistent API views.
 
 ### Task 7: Write Tests
 
